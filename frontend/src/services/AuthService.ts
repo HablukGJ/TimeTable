@@ -37,5 +37,14 @@ class AuthService {
     isAuthenticated() {
         return !!localStorage.getItem("accessToken");
     }
+
+    logout() {
+        localStorage.removeItem("accessToken");
+    }
+    getProfile() {
+        if (localStorage.getItem("user")) {
+            return JSON.parse(localStorage.getItem("user"));
+        }
+    }
 }
 export const authService = new AuthService();

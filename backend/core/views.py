@@ -51,6 +51,9 @@ class EventViewSet(viewsets.ModelViewSet):
             return [IsAdminUser()]
         return super().get_permissions()
 
+    def get_queryset(self):
+        return Event.objects.filter(user=self.request.user.id)
+
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
